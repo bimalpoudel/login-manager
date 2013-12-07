@@ -1,4 +1,5 @@
 SELECT f_encrypt('string');
+SELECT f_decrypt(f_encrypt('string'));
 
 DROP FUNCTION IF EXISTS f_encrypt;
 DELIMITER $$
