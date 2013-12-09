@@ -1,0 +1,14 @@
+IndexIgnore *
+DirectoryIndex welcome.php
+
+Options +FollowSymLinks
+
+RewriteEngine on
+RewriteRule ^$ welcome.php [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule (.*) welcome.php?page=$1 [QSA,L]
+
+php_value disable_functions phpinfo
