@@ -78,13 +78,14 @@ DROP TABLE IF EXISTS `logins_upapproved`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `logins_upapproved` (
   `login_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Login ID',
+  `reason_code` varchar(255) NOT NULL DEFAULT '' COMMENT 'Why this login request is made for',
   `login_email` varchar(255) NOT NULL DEFAULT '' COMMENT 'Preferred Email Address to login',
   `login_code` varchar(255) NOT NULL DEFAULT '' COMMENT 'Login Authentication Code',
   `login_ip` varchar(255) NOT NULL DEFAULT '' COMMENT 'Login IP Used',
   `login_isp` varchar(255) NOT NULL DEFAULT '' COMMENT 'Login ISP Detected',
   `is_approved` enum('N','Y') NOT NULL DEFAULT 'N' COMMENT 'Is the login transferred to the approved zone?',
   PRIMARY KEY (`login_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +94,7 @@ CREATE TABLE `logins_upapproved` (
 
 LOCK TABLES `logins_upapproved` WRITE;
 /*!40000 ALTER TABLE `logins_upapproved` DISABLE KEYS */;
-INSERT INTO `logins_upapproved` VALUES (1,'989','333','','','Y'),(2,'989','222','','','N'),(3,'{$email_address}','222','','','N');
+INSERT INTO `logins_upapproved` VALUES (1,'','989','333','','','Y'),(2,'','989','222','','','N'),(3,'','{$email_address}','222','','','N'),(4,'{$reason_code}','{$email_address}','','','','N'),(5,'{$reason_code}','{$email_address}','58378c5d5df2ace6b3dac26fa8cf319d','{$ip_address}','{$isp_name}','N'),(6,'{$reason_code}','{$email_address}','869d9e99c38459f89791fd914c86b8c0','{$ip_address}','{$isp_name}','N'),(7,'{$reason_code}','{$email_address}','203ffa51d1927ac65b2e2ee0670649b6','{$ip_address}','{$isp_name}','N'),(8,'{$reason_code}','{$email_address}','ef1d5fb6015f8931188b4618efb022d0','{$ip_address}','{$isp_name}','N'),(9,'{$reason_code}','{$email_address}','ef1d5fb6015f8931188b4618efb022d0','{$ip_address}','{$isp_name}','N'),(10,'{$reason_code}','{$email_address}','030754d1c601b2275f0033506b06be98','{$ip_address}','{$isp_name}','N'),(11,'{$reason_code}','{$email_address}','4b48c649769e882c5b817bfa08ed8b1f','{$ip_address}','{$isp_name}','N'),(12,'{$reason_code}','{$email_address}','f56484d2f794a9f9995d83b5c75fa01f','{$ip_address}','{$isp_name}','N'),(13,'email@domain.com','','29b3491676902e5512fe6b78f61dbe9a','','','N'),(14,'reason-code','email@domain.com','6c3ae98a90c639df7dfe0de0a2517c93','::1','dell','N'),(15,'reason-code','email@domain.com','c06b3cf2125e8b711bb1addbbacf9695','::1','dell','N'),(16,'reason-codesdf','email@domassin.com','55c9a59bb1dc47ee04b11b7718791c51','::1','dell','N');
 /*!40000 ALTER TABLE `logins_upapproved` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,10 +234,25 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = '' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 FUNCTION `f_login_regsiter_unapproved`(_login_email varchar(255)) RETURNS tinyint(1)
+/*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 FUNCTION `f_login_regsiter_unapproved`(
+	_reason_code VARCHAR(255), 
+	_login_email VARCHAR(255),
+	_ip_address VARCHAR(255),
+	_isp_name VARCHAR(255)
+) RETURNS varchar(255) CHARSET utf8
 BEGIN
-	INSERT INTO logins_upapproved(login_email, login_code) VALUES (_login_email, '');
-	RETURN TRUE;
+	declare _login_code VARCHAR(255);
+	SET _login_code = MD5(concat(NOW(), rand()));
+	INSERT INTO logins_upapproved(
+		reason_code, login_email,
+		login_code,
+		login_ip, login_isp
+	) VALUES (
+		_reason_code, _login_email,
+		_login_code,
+		_ip_address, _isp_name
+	);
+	RETURN _login_code;
 END */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -253,4 +269,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-12-08  2:41:04
+-- Dump completed on 2013-12-11  2:37:24

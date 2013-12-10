@@ -21,11 +21,10 @@
 <form id="registration-apply" name="registration-apply" method="post" action="registration-apply.php">
 	<p>
 		<label for="email_address">Valid Email Address</label>
-	 
-	<input type="text" name="apply[email]" id="email_address" placeholder="email@domain.com" value="" />
+		<input type="text" name="apply[email]" id="email_address" placeholder="email@domain.com" value="" />
 	</p>
-	<p>Promotional / Purpose / Category Code:
-		<label for="apply_purpose"></label>
+	<p>
+		<label for="apply_purpose">Promotional / Purpose / Category Code:</label>
 		<input type="text" name="apply[purpose]" id="apply_purpose" placeholder="REASON-CODE" value="" />
 	</p>
 	<p>
@@ -34,23 +33,21 @@
 	<p>Please wait for approval after you apply.</p>
 </form>
 <h2>Login (existing users)</h2>
-<form id="form2" name="form2" method="post" action="">
+<form id="login" name="login" method="post" action="login-check.php">
 	<p>
-		<label for="textfield2"></label>
-	Email Address:
-	<input type="text" name="textfield2" id="textfield2" />
+		<label for="login-email">Email Address:</label>
+		<input type="text" name="login[email]" id="login-email" placeholder="email@domain.com" value="" />
 	</p>
 	<p>
-		<label for="textfield3"></label>
-		Password: 
-		<input type="text" name="textfield3" id="textfield3" />
+		<label for="login-pasword">Password:</label>
+		<input type="text" name="login[password]" id="login-password" placeholder="password" value="" />
 	</p>
-	<p>Captcha Code: <img src="images/captcha.png" width="84" height="27" />
-		<label for="textfield4"></label>
-		<input type="text" name="textfield4" id="textfield4" />
+	<p><img src="images/captcha.png" width="84" height="27" />
+		<label for="login-captcha">Captcha Code:</label>
+		<input type="text" name="login[captcha]" id="login-captcha" />
 	</p>
 	<p>
-		<input type="submit" name="button2" id="button2" value="Login" />
+		<input type="submit" name="login-submit" id="login-submit" value="Login" />
 	</p>
 </form>
 </body>
