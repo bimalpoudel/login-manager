@@ -18,19 +18,20 @@
 	<li>Clients</li>
 </ul>
 <h2>Apply for a login (new registration request)</h2>
-<form id="form1" name="form1" method="post" action="">
+<form id="registration-apply" name="registration-apply" method="post" action="registration-apply.php">
 	<p>
-		<label for="textfield"></label>
-	Valid Email Address 
-	<input type="text" name="textfield" id="textfield" />
+		<label for="email_address">Valid Email Address</label>
+	 
+	<input type="text" name="apply[email]" id="email_address" placeholder="email@domain.com" value="" />
 	</p>
 	<p>Promotional / Purpose / Category Code:
-		<label for="textfield5"></label>
-		<input type="text" name="textfield5" id="textfield5" />
+		<label for="apply_purpose"></label>
+		<input type="text" name="apply[purpose]" id="apply_purpose" placeholder="REASON-CODE" value="" />
 	</p>
 	<p>
-		<input type="submit" name="button" id="button" value="Request me a registration" />
+		<input type="submit" name="request-submit" id="request-submit" value="Request me a registration" />
 	</p>
+	<p>Please wait for approval after you apply.</p>
 </form>
 <h2>Login (existing users)</h2>
 <form id="form2" name="form2" method="post" action="">
@@ -44,7 +45,7 @@
 		Password: 
 		<input type="text" name="textfield3" id="textfield3" />
 	</p>
-	<p>Captcha Code: <img src="captcha.png" width="164" height="59" />
+	<p>Captcha Code: <img src="images/captcha.png" width="84" height="27" />
 		<label for="textfield4"></label>
 		<input type="text" name="textfield4" id="textfield4" />
 	</p>
