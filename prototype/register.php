@@ -22,5 +22,6 @@
 	</p>
 </form>
 <p>Please wait for approval after you apply. We will send you an email with confirmation.</p>
+<script type="text/javascript" src="js/autocomplete-register.js"></script>
 </body>
 </html>

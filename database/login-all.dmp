@@ -75,7 +75,7 @@ DROP TABLE IF EXISTS `logins_approved`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `logins_approved` (
-  `login_id` int(10) NOT NULL COMMENT 'Login ID',
+  `login_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Login ID',
   `login_email` varchar(255) NOT NULL DEFAULT '' COMMENT 'Preferred Email Address to login',
   `login_password` varchar(255) NOT NULL DEFAULT '' COMMENT 'Encrypted login password',
   `login_code` varchar(255) NOT NULL DEFAULT '' COMMENT 'Login Authentication Code',
@@ -83,7 +83,7 @@ CREATE TABLE `logins_approved` (
   `login_isp` varchar(255) NOT NULL DEFAULT '' COMMENT 'Login ISP Detected',
   `is_approved` enum('N','Y') NOT NULL DEFAULT 'N' COMMENT 'Is the login transferred to the approved zone?',
   PRIMARY KEY (`login_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +92,7 @@ CREATE TABLE `logins_approved` (
 
 LOCK TABLES `logins_approved` WRITE;
 /*!40000 ALTER TABLE `logins_approved` DISABLE KEYS */;
-INSERT INTO `logins_approved` VALUES (0,'989','','','','','N');
+INSERT INTO `logins_approved` VALUES (1,'989','','','','','N');
 /*!40000 ALTER TABLE `logins_approved` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,7 +112,7 @@ CREATE TABLE `logins_upapproved` (
   `login_isp` varchar(255) NOT NULL DEFAULT '' COMMENT 'Login ISP Detected',
   `is_approved` enum('N','Y') NOT NULL DEFAULT 'N' COMMENT 'Is the login transferred to the approved zone?',
   PRIMARY KEY (`login_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -121,7 +121,7 @@ CREATE TABLE `logins_upapproved` (
 
 LOCK TABLES `logins_upapproved` WRITE;
 /*!40000 ALTER TABLE `logins_upapproved` DISABLE KEYS */;
-INSERT INTO `logins_upapproved` VALUES (1,'','989','333','','','Y'),(2,'','989','222','','','N'),(3,'','{$email_address}','222','','','N'),(4,'{$reason_code}','{$email_address}','','','','N'),(5,'{$reason_code}','{$email_address}','58378c5d5df2ace6b3dac26fa8cf319d','{$ip_address}','{$isp_name}','N'),(6,'{$reason_code}','{$email_address}','869d9e99c38459f89791fd914c86b8c0','{$ip_address}','{$isp_name}','N'),(7,'{$reason_code}','{$email_address}','203ffa51d1927ac65b2e2ee0670649b6','{$ip_address}','{$isp_name}','N'),(8,'{$reason_code}','{$email_address}','ef1d5fb6015f8931188b4618efb022d0','{$ip_address}','{$isp_name}','N'),(9,'{$reason_code}','{$email_address}','ef1d5fb6015f8931188b4618efb022d0','{$ip_address}','{$isp_name}','N'),(10,'{$reason_code}','{$email_address}','030754d1c601b2275f0033506b06be98','{$ip_address}','{$isp_name}','N'),(11,'{$reason_code}','{$email_address}','4b48c649769e882c5b817bfa08ed8b1f','{$ip_address}','{$isp_name}','N'),(12,'{$reason_code}','{$email_address}','f56484d2f794a9f9995d83b5c75fa01f','{$ip_address}','{$isp_name}','N'),(13,'email@domain.com','','29b3491676902e5512fe6b78f61dbe9a','','','N'),(14,'reason-code','email@domain.com','6c3ae98a90c639df7dfe0de0a2517c93','::1','dell','N'),(15,'reason-code','email@domain.com','c06b3cf2125e8b711bb1addbbacf9695','::1','dell','N'),(16,'reason-codesdf','email@domassin.com','55c9a59bb1dc47ee04b11b7718791c51','::1','dell','N'),(17,'8989','e@ma.ae','7fded5d787ceb87f6c54632e6ca5a4cc','::1','dell','N');
+INSERT INTO `logins_upapproved` VALUES (1,'','989','333','','','Y'),(2,'','989','222','','','N'),(3,'','{$email_address}','222','','','N'),(4,'{$reason_code}','{$email_address}','','','','N'),(5,'{$reason_code}','{$email_address}','58378c5d5df2ace6b3dac26fa8cf319d','{$ip_address}','{$isp_name}','N'),(6,'{$reason_code}','{$email_address}','869d9e99c38459f89791fd914c86b8c0','{$ip_address}','{$isp_name}','N'),(7,'{$reason_code}','{$email_address}','203ffa51d1927ac65b2e2ee0670649b6','{$ip_address}','{$isp_name}','N'),(8,'{$reason_code}','{$email_address}','ef1d5fb6015f8931188b4618efb022d0','{$ip_address}','{$isp_name}','N'),(9,'{$reason_code}','{$email_address}','ef1d5fb6015f8931188b4618efb022d0','{$ip_address}','{$isp_name}','N'),(10,'{$reason_code}','{$email_address}','030754d1c601b2275f0033506b06be98','{$ip_address}','{$isp_name}','N'),(11,'{$reason_code}','{$email_address}','4b48c649769e882c5b817bfa08ed8b1f','{$ip_address}','{$isp_name}','N'),(12,'{$reason_code}','{$email_address}','f56484d2f794a9f9995d83b5c75fa01f','{$ip_address}','{$isp_name}','N'),(13,'email@domain.com','','29b3491676902e5512fe6b78f61dbe9a','','','N'),(14,'reason-code','email@domain.com','6c3ae98a90c639df7dfe0de0a2517c93','::1','dell','N'),(15,'reason-code','email@domain.com','c06b3cf2125e8b711bb1addbbacf9695','::1','dell','N'),(16,'reason-codesdf','email@domassin.com','55c9a59bb1dc47ee04b11b7718791c51','::1','dell','N'),(17,'8989','e@ma.ae','7fded5d787ceb87f6c54632e6ca5a4cc','::1','dell','N'),(18,'TEST','email@domain.com','7f883e05966738702088ecfabe21e6cf','::1','dell','N');
 /*!40000 ALTER TABLE `logins_upapproved` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -299,4 +299,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-12-15 23:47:34
+-- Dump completed on 2013-12-16  1:56:59
