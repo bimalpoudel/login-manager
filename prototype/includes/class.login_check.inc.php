@@ -4,7 +4,7 @@ extends mysql
 {
 	function login($email='', $password='', $captcha='')
 	{
-		echo 'login check';
+		echo 'login check attempted';
 	}
 }
 ?>
