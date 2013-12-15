@@ -9,10 +9,10 @@
 <h1>Login Manager</h1>
 <p><a href="prototype/index.php">Begin</a></p>
 <ul>
-	<li>Sign Up (Register)</li>
-	<li>Login</li>
+	<li><a href="prototype/register.php">Sign Up (Register)</a></li>
+	<li><a href="prototype/login.php">Login</a></li>
 	<li>Other Information</li>
 </ul>
-<p>Other contets...</p>
+<p>Other contents...</p>
 </body>
 </html>
